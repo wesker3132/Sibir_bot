@@ -146,7 +146,23 @@ function submitOffline() {
     showPage('menu');
 }
 
+// ========== МОЯ ЗАЯВКА (ИСПРАВЛЕНО) ==========
 function getStatus() {
+    // Показываем статус из localStorage
+    const status = userData.status || 'не создана';
+    const nick = userData.nickname || 'Гость';
+    const rank = userData.rank || '(0) Гость';
+    const server = userData.server || 'Не выбран';
+    
+    alert(
+        `📋 ТВОЙ СТАТУС\n\n` +
+        `👤 Ник: ${nick}\n` +
+        `📌 Сервер: ${server}\n` +
+        `⭐ Ранг: ${rank}\n` +
+        `📋 Заявка: ${status}`
+    );
+    
+    // Также отправляем запрос в бота (для обновления статуса из базы)
     tg.sendData(JSON.stringify({ action: 'get_status' }));
 }
 
